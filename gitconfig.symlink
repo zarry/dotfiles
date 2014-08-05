@@ -1,3 +1,5 @@
 [user]
 	name = Larry Zarou
 	email = larry@zarou.com
+[push]
+	default = simple

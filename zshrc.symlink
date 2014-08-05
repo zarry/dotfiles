@@ -32,9 +32,12 @@ export EDITOR='vim'
 alias bigdirs='du --max-depth=1 2> /dev/null | sort -n -r | head -n20'
 alias runningvms='VboxManage list runningvms' 
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+alias vcycle="vagrant destroy -f && vagrant up"
 
 # Colorize output, add file type indicator, and put sizes in human readable format
 # alias ls='ls -h'
 
 # Same as above, but in long listing format
 # alias ll='ls -hl'
+#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
+[[ -s "/Users/lzarou/.gvm/bin/gvm-init.sh" ]] && source "/Users/lzarou/.gvm/bin/gvm-init.sh"
