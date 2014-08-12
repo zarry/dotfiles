@@ -27,6 +27,7 @@ plugins=(git mercurial ruby)
 source $ZSH/oh-my-zsh.sh
 
 export EDITOR='vim'
+export PATH=$HOME/.chefdk/gem/ruby/2.1.0/bin:/opt/chefdk/bin:$PATH
 
 ### ALIASES
 alias bigdirs='du --max-depth=1 2> /dev/null | sort -n -r | head -n20'
@@ -39,5 +40,8 @@ alias vcycle="vagrant destroy -f && vagrant up"
 
 # Same as above, but in long listing format
 # alias ll='ls -hl'
+
+
+
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
 [[ -s "/Users/lzarou/.gvm/bin/gvm-init.sh" ]] && source "/Users/lzarou/.gvm/bin/gvm-init.sh"
