@@ -27,11 +27,17 @@ plugins=(git mercurial ruby)
 source $ZSH/oh-my-zsh.sh
 
 export EDITOR='vim'
-export PATH=$HOME/.chefdk/gem/ruby/2.1.0/bin:/opt/chefdk/bin:$PATH
+#export PATH=$HOME/.chefdk/gem/ruby/2.1.0/bin:/opt/chefdk/bin:$PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/lzarou/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables bash completion for gcloud.
+source '/Users/lzarou/google-cloud-sdk/completion.zsh.inc'
 
 ### ALIASES
 alias bigdirs='du --max-depth=1 2> /dev/null | sort -n -r | head -n20'
-alias runningvms='VboxManage list runningvms' 
+alias runningvms='VboxManage list runningvms'
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 alias vcycle="vagrant destroy -f && vagrant up"
 
@@ -41,7 +47,8 @@ alias vcycle="vagrant destroy -f && vagrant up"
 # Same as above, but in long listing format
 # alias ll='ls -hl'
 
-
+# Rbenv shims + autocompletion
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
 [[ -s "/Users/lzarou/.gvm/bin/gvm-init.sh" ]] && source "/Users/lzarou/.gvm/bin/gvm-init.sh"
