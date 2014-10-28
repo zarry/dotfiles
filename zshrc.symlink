@@ -26,9 +26,6 @@ plugins=(git mercurial ruby)
 
 source $ZSH/oh-my-zsh.sh
 
-export EDITOR='vim'
-#export PATH=$HOME/.chefdk/gem/ruby/2.1.0/bin:/opt/chefdk/bin:$PATH
-
 # The next line updates PATH for the Google Cloud SDK.
 source '/Users/lzarou/google-cloud-sdk/path.zsh.inc'
 
@@ -40,6 +37,7 @@ alias bigdirs='du --max-depth=1 2> /dev/null | sort -n -r | head -n20'
 alias runningvms='VboxManage list runningvms'
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 alias vcycle="vagrant destroy -f && vagrant up"
+alias flushdns="sudo killall -HUP mDNSResponder"
 
 # Colorize output, add file type indicator, and put sizes in human readable format
 # alias ls='ls -h'
@@ -49,6 +47,9 @@ alias vcycle="vagrant destroy -f && vagrant up"
 
 # Rbenv shims + autocompletion
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+export EDITOR='vim'
+export PATH=$HOME/.chefdk/gem/ruby/2.1.0/bin:/opt/chefdk/bin:$PATH
 
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
 [[ -s "/Users/lzarou/.gvm/bin/gvm-init.sh" ]] && source "/Users/lzarou/.gvm/bin/gvm-init.sh"
