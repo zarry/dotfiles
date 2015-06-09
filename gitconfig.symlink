@@ -1,10 +1,11 @@
 [user]
 	name = Larry Zarou
-	email = larry@zarou.com
+	email = lzarou@commercehub.com
 [push]
 	default = simple
 [core]
 	excludesfile = /Users/lzarou/.gitignore_global
+	autocrlf = input
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 

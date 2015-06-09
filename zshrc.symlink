@@ -5,7 +5,10 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="gianu"
+#ZSH_THEME="gianu"
+#ZSH_THEME="amuse"
+#ZSH_THEME="gentoo"
+ZSH_THEME="kphoen"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -32,12 +35,68 @@ source '/Users/lzarou/google-cloud-sdk/path.zsh.inc'
 # The next line enables bash completion for gcloud.
 source '/Users/lzarou/google-cloud-sdk/completion.zsh.inc'
 
+### FUNCTIONS
+fliptable() { echo "（╯°□°）╯ ┻━┻"; } # Flip a table. Example usage: fsck -y /dev/sdb1 || fliptable
+happydance() {
+	echo ";D=-<\n"
+	echo ";D|-<\n"
+	echo ";D\-<\n"
+	echo ";D|-<\n"
+	echo ";D/-<\n"
+	echo ";D|-<\n"
+}
+disco() {
+	echo "(•_•)"
+	echo "<)   )╯"
+	echo " /    \ "
+	echo ""
+	echo "\(•_•)"
+	echo " (   (>"
+	echo " /    \ "
+	echo ""
+	echo " (•_•)"
+	echo "<)   )>"
+	echo " /    \ "
+}
+monocle() {
+	echo "ಠ_ರೃ\n"
+}
+snow() {
+	clear;while :;do echo $LINES $COLUMNS $(($RANDOM%$COLUMNS));sleep 0.1;done|gawk '{a[$3]=0;for(x in a) {o=a[x];a[x]=a[x]+1;printf "\033[%s;%sH ",o,x;printf "\033[%s;%sH*\033[0;0H",a[x],x;}}'
+}
+csiyeah() {
+	echo "(•_•) , ( •_•)>⌐■-■ , (⌐■_■)"
+}
+lint() {
+	if [ $1 ]; then
+		target=$1
+	else
+		target="."
+	fi
+	if [ `which rubocop` ]; then
+		echo "Running RuboCop";
+		rubocop $target;
+	else
+		echo "\nWARNING: RuboCop is not installed\n";
+	fi
+	if [ `which foodcritic` ]; then
+		echo "\nRunning Foodcritic\n";
+		foodcritic $target;
+	else
+		echo "\nWARNING: FoodCritic is not installed\n";
+	fi
+}
+
+
+
 ### ALIASES
 alias bigdirs='du --max-depth=1 2> /dev/null | sort -n -r | head -n20'
 alias runningvms='VboxManage list runningvms'
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 alias vcycle="vagrant destroy -f && vagrant up"
-alias flushdns="sudo killall -HUP mDNSResponder"
+alias flushdns="sudo discoveryutil udnsflushcaches"
+alias fuck='$(thefuck $(fc -ln -1))'
+alias FUCK='fuck'
 
 # Colorize output, add file type indicator, and put sizes in human readable format
 # alias ls='ls -h'
@@ -56,6 +115,14 @@ export DOCKER_HOST=tcp://192.168.59.103:2376
 export DOCKER_CERT_PATH=/Users/lzarou/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
 
+### Mac cursor commands for iTerm2; map ctrl+arrows or alt+arrows to fast-move
+# for ctrl+arrows:
+#"\e[1;5D": backward-word
+#"\e[1;5C": forward-word
+# for alt+arrows:
+bindkey -e
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
 
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
 [[ -s "/Users/lzarou/.gvm/bin/gvm-init.sh" ]] && source "/Users/lzarou/.gvm/bin/gvm-init.sh"
