@@ -25,7 +25,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mercurial ruby)
+plugins=(git ruby)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,22 +87,14 @@ lint() {
 	fi
 }
 
-
-
 ### ALIASES
 alias bigdirs='du --max-depth=1 2> /dev/null | sort -n -r | head -n20'
-alias runningvms='VboxManage list runningvms'
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+alias vlist='VboxManage list runningvms'
 alias vcycle="vagrant destroy -f && vagrant up"
 alias flushdns="sudo discoveryutil udnsflushcaches"
 alias fuck='$(thefuck $(fc -ln -1))'
 alias FUCK='fuck'
-
-# Colorize output, add file type indicator, and put sizes in human readable format
-# alias ls='ls -h'
-
-# Same as above, but in long listing format
-# alias ll='ls -hl'
 
 # Rbenv shims + autocompletion
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
@@ -114,6 +106,13 @@ export PATH="/opt/chefdk/bin:$PATH"
 export DOCKER_HOST=tcp://192.168.59.103:2376
 export DOCKER_CERT_PATH=/Users/lzarou/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
+
+## GO
+export GOPATH=$HOME/projects/go
+export PATH=$PATH:$GOPATH/bin
+
+## Terraform
+export PATH=$PATH:$HOME/terraform
 
 ### Mac cursor commands for iTerm2; map ctrl+arrows or alt+arrows to fast-move
 # for ctrl+arrows:

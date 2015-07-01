@@ -1,0 +1,68 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" Golang
+if isdirectory($GOROOT)
+    set runtimepath+=$GOROOT/misc/vim
+endif
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin('~/.vim/plugins')
+
+Plugin 'gmarik/Vundle.vim'
+
+" Language
+
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim' 
+Plugin 'garbas/vim-snipmate'
+Plugin 'vadv/vim-chef'
+Plugin 'fatih/vim-go'
+Plugin 'elzr/vim-json'
+Plugin 'tpope/vim-markdown'
+
+" Other
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'airblade/vim-gitgutter'
+Plugin 'kien/ctrlp.vim'
+Plugin 'trusktr/seti.vim'
+Plugin 'mhinz/vim-startify'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+colorscheme seti
+set number	" show line numbers
+set list	" show invisible
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set nowrap      " don't wrap lines
+set showmatch     " set show matching parenthesis
+set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
+set noswapfile    " no swap files
+autocmd ColorScheme * hi SpecialKey ctermbg=16 guibg=#151718
+autocmd ColorScheme * hi NonText ctermbg=16 guibg=#151718
+
+" for startify
+set viminfo='100,n$HOME/.vim/files/info/viminfo'
+
+set guifont=Inconsolata\ for\ Powerline:h15
+let g:Powerline_symbols = 'fancy'
+set encoding=utf-8
+set t_Co=256
+set fillchars+=stl:\ ,stlnc:\
+set term=xterm-256color
+set termencoding=utf-8
+
+
+if has("gui_running")
+   let s:uname = system("uname")
+   if s:uname == "Darwin\n"
+      set guifont=Inconsolata\ for\ Powerline:h15
+   endif
+endif
