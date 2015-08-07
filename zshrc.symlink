@@ -96,11 +96,16 @@ alias flushdns="sudo discoveryutil udnsflushcaches"
 alias fuck='$(thefuck $(fc -ln -1))'
 alias FUCK='fuck'
 
-# Rbenv shims + autocompletion
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 export EDITOR='vim'
-export PATH="/opt/chefdk/bin:$PATH"
+
+## Chef-DK
+export PATH="/opt/chefdk/bin:/Users/lzarou/.chefdk/gem/ruby/2.1.0/bin:/opt/chefdk/embedded/bin:$PATH"
+export GEM_ROOT="/opt/chefdk/embedded/lib/ruby/gems/2.1.0"
+export GEM_HOME="/Users/lzarou/.chefdk/gem/ruby/2.1.0"
+export GEM_PATH="/Users/lzarou/.chefdk/gem/ruby/2.1.0:/opt/chefdk/embedded/lib/ruby/gems/2.1.0"
+
+## Grails
+export GRAILS_OPTS="-server -Xmx1536M -Xms1536M -XX:PermSize=1024m -XX:MaxPermSize=1024m -Dfile.encoding=UTF-8"
 
 ## Docker
 export DOCKER_HOST=tcp://192.168.59.103:2376
