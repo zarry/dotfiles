@@ -8,7 +8,14 @@ ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="gianu"
 #ZSH_THEME="amuse"
 #ZSH_THEME="gentoo"
-ZSH_THEME="kphoen"
+#ZSH_THEME="kphoen"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+#Powerline
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history time)
+POWERLEVEL9K_MODE='awesome-patched'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -95,22 +102,58 @@ alias vcycle="vagrant destroy -f && vagrant up"
 alias flushdns="sudo discoveryutil udnsflushcaches"
 alias fuck='$(thefuck $(fc -ln -1))'
 alias FUCK='fuck'
+alias mvim="/Applications/MacVim.app/contents/MacOS/MacVim %1 &"
+alias solr_start='solr start -s /Users/lzarou/projects/buyspace/solr/cores'
+alias mongod_start='mongod --config /usr/local/etc/mongod.conf'
+alias java7="export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)"
+alias java8="export JAVA_HOME=$(/usr/libexec/java_home -v 1.8.0_45)"
 
 export EDITOR='vim'
 
 ## Chef-DK
-export PATH="/opt/chefdk/bin:/Users/lzarou/.chefdk/gem/ruby/2.1.0/bin:/opt/chefdk/embedded/bin:$PATH"
-export GEM_ROOT="/opt/chefdk/embedded/lib/ruby/gems/2.1.0"
-export GEM_HOME="/Users/lzarou/.chefdk/gem/ruby/2.1.0"
-export GEM_PATH="/Users/lzarou/.chefdk/gem/ruby/2.1.0:/opt/chefdk/embedded/lib/ruby/gems/2.1.0"
+export PATH="/opt/chefdk/bin:/Users/lzarou/.chefdk/gem/ruby/2.3.0/bin:/opt/chefdk/embedded/bin:/opt/chefdk/bin:/Users/lzarou/.chefdk/gem/ruby/2.3.0/bin:/opt/chefdk/embedded/bin:/Users/lzarou/bin/mongodb/bin:$PATH"
+export GEM_ROOT="/opt/chefdk/embedded/lib/ruby/gems/2.3.0"
+export GEM_HOME="/Users/lzarou/.chefdk/gem/ruby/2.3.0"
+export GEM_PATH="/Users/lzarou/.chefdk/gem/ruby/2.3.0:/opt/chefdk/embedded/lib/ruby/gems/2.3.0"
+function _chef() {
+
+  local -a _1st_arguments
+  _1st_arguments=(
+      'exec:Runs the command in context of the embedded ruby'
+      'env:Prints environment variables used by ChefDK'
+      'gem:Runs the `gem` command in context of the embedded ruby'
+      'generate:Generate a new app, cookbook, or component'
+      'shell-init:Initialize your shell to use ChefDK as your primary ruby'
+      'install:Install cookbooks from a Policyfile and generate a locked cookbook set'
+      'update:Updates a Policyfile.lock.json with latest run_list and cookbooks'
+      'push:Push a local policy lock to a policy group on the server'
+      'push-archive:Push a policy archive to a policy group on the server'
+      'show-policy:Show policyfile objects on you Chef Server'
+      'diff:Generate an itemized diff of two Policyfile lock documents'
+      'provision:Provision VMs and clusters via cookbook'
+      'export:Export a policy lock as a Chef Zero code repo'
+      'clean-policy-revisions:Delete unused policy revisions on the server'
+      'clean-policy-cookbooks:Delete unused policyfile cookbooks on the server'
+      'delete-policy-group:Delete a policy group on the server'
+      'delete-policy:Delete all revisions of a policy on the server'
+      'undelete:Undo a delete command'
+      'verify:Test the embedded ChefDK applications'
+    )
+
+  _arguments \
+    '(-v --version)'{-v,--version}'[version information]' \
+    '*:: :->subcmds' && return 0
+
+  if (( CURRENT == 1 )); then
+    _describe -t commands "chef subcommand" _1st_arguments
+    return
+  fi
+}
+
+compdef _chef chef
 
 ## Grails
 export GRAILS_OPTS="-server -Xmx1536M -Xms1536M -XX:PermSize=1024m -XX:MaxPermSize=1024m -Dfile.encoding=UTF-8"
-
-## Docker
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/lzarou/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
 
 ## GO
 export GOPATH=$HOME/projects/go
@@ -130,3 +173,7 @@ bindkey '^[[1;9D' backward-word
 
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
 [[ -s "/Users/lzarou/.gvm/bin/gvm-init.sh" ]] && source "/Users/lzarou/.gvm/bin/gvm-init.sh"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
